@@ -7,4 +7,19 @@ export {
 
 export { ENDPOINTS } from "./endpoints";
 
-export { getAllPeople, getPeopleById } from "./search";
+export {
+  getAnyItemByType,
+  getSingleItemByTypeAndId,
+  getAllPeople,
+  getPeopleById,
+  getAllFilms,
+  getFilmById,
+  getAllStarships,
+  getStarshipById,
+  getAllVehicles,
+  getVehicleById,
+  getAllSpices,
+  getSpicesById,
+  getAllPlanets,
+  getPlanetById,
+} from "./search";

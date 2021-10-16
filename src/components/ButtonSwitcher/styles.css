@@ -1,17 +1,29 @@
 .buttonSwitcherWrapper{
     width: 100%;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
-    background-color: red;
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
 }
 .buttonSwitcher{
+    display: flex;
+    align-items: center;
     flex: 1;
-padding: 20px;
+    border-right: 1px solid #000;
+    margin-right: 10px;
+    padding-right: 10px;
 }
+.buttonSwitcher:last-of-type {
+    border-right: none;
+    margin-right: 0;
+                 }
 .buttonSwitcherInput{
-    background-color: green;
 }
 .buttonSwitcherLabel{
-font-size: 20px;
+    font-size: 20px;
+    padding: 20px;
+    width: 100%
 }

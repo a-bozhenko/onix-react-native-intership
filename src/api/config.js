@@ -31,7 +31,5 @@ export const getRequestConfig = (method, endpoint) => {
 };
 
 export const makeParams = (params) => {
-  const apikey = process.env.REACT_APP_PRIVAT_KEY; // api key to login
-
-  return { ...params, apikey };
+  return { ...params };
 };

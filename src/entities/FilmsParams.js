@@ -1,9 +1,11 @@
 /**
  * Search Fields "title"
- *@param {string} title  -- The title of this film
+ *@param {string} search  -- The title of this film
+ *@param {number} page  -- page to load content
  */
 export default class FilmsParams {
   constructor(props) {
-    this.title = props.title || "";
+    this.search = props.query || "";
+    this.page = props.page || 1;
   }
 }

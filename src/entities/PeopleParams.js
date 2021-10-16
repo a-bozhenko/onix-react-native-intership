@@ -1,9 +1,12 @@
 /**
  * Search Fields - "name"
- *@param {string} name -- The name of this person.
+ *@param {string} search -- The name of this person.
+ *@param {number} page  -- page to load content
+
  */
 export default class PeopleParams {
   constructor(props) {
-    this.name = props.name || "";
+    this.search = props.query || "";
+    this.page = props.page || 1;
   }
 }

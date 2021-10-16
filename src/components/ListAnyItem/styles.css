@@ -1,0 +1,19 @@
+.listAnyItemWrapper {
+    padding: 10px 20px;
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
+}
+.listAnyItemWrapperLast {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.listAnyItemTitle {
+    font-size: 22px;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+}
+.listAnyItemField{
+
+}
+.listAnyItemFieldText{
+}

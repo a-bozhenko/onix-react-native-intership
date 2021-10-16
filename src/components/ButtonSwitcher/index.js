@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./styles.css";
 
 const ButtonSwitcher = (props) => {
-  const { buttons, onChange = () => {}, name } = props;
+  const { buttons, onChange, name } = props;
   const [selected, setSelected] = useState(buttons[0]);
 
   useEffect(() => {
@@ -22,10 +22,10 @@ const ButtonSwitcher = (props) => {
           name={name}
           id={button.id}
           checked={selected.id === button.id}
-          onClick={() => setSelected(button)}
+          onChange={() => setSelected(button)}
           className={"buttonSwitcherInput"}
         />
-        <label for={button.id} className={"buttonSwitcherLabel"}>
+        <label htmlFor={button.id} className={"buttonSwitcherLabel"}>
           {button.text}
         </label>
       </div>
@@ -37,6 +37,10 @@ const ButtonSwitcher = (props) => {
 
 ButtonSwitcher.propTypes = {
   buttons: PropTypes.array,
+};
+ButtonSwitcher.defaultProps = {
+  buttons: [],
+  onChange: () => {},
 };
 
 export default ButtonSwitcher;
