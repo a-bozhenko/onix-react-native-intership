@@ -2,14 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import ListAnyItem from "../ListAnyItem";
 import "./styles.css";
+import { CONTENT_TYPES } from "../../helpers";
 
 const propTypes = {
   items: PropTypes.array.isRequired,
-  itemsType: PropTypes.string.isRequired,
+  itemsType: PropTypes.object.isRequired,
 };
 const defaultProps = {
   items: [],
-  itemsType: "",
+  itemsType: { text: "Films", id: CONTENT_TYPES.FILMS },
 };
 
 const ItemsList = (props) => {
@@ -23,7 +24,7 @@ const ItemsList = (props) => {
     const isLast = index === items.length - 1;
 
     return (
-      <div key={item.url}>
+      <div key={`it_${item.url}`}>
         <ListAnyItem item={item} itemsType={itemsType} isLast={isLast} />
       </div>
     );

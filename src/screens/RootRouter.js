@@ -7,16 +7,26 @@ function RootRouter() {
   return (
     <Router>
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <MainScreen />
         </Route>
-        <Route path="/people/:id">
+
+        <Route exact path="/films/:id">
+          <DetailsScreen type={CONTENT_TYPES.FILMS} />
+        </Route>
+        <Route exact path="/species/:id">
+          <DetailsScreen type={CONTENT_TYPES.SPECIES} />
+        </Route>
+        <Route exact path="/vehicles/:id">
+          <DetailsScreen type={CONTENT_TYPES.VEHICLES} />
+        </Route>
+        <Route exact path="/people/:id">
           <DetailsScreen type={CONTENT_TYPES.PEOPLE} />
         </Route>
-        <Route path="/planets/:id">
+        <Route exact path="/planets/:id">
           <DetailsScreen type={CONTENT_TYPES.PLANETS} />
         </Route>
-        <Route path="/starships/:id">
+        <Route exact path="/starships/:id">
           <DetailsScreen type={CONTENT_TYPES.STARSHIPS} />
         </Route>
       </Switch>

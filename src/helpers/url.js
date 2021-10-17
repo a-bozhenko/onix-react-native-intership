@@ -1,3 +1,3 @@
 export const urlReader = (url) => {
-  return { type: "", id: "" };
+  return url.replace("https://swapi.dev/api/", "");
 };

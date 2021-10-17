@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./styles.css";
-import { makeFormattedFieldName } from "../../helpers";
+import { makeFormattedFieldName, urlReader } from "../../helpers";
 
 const EXCLUDED_FIELDS = [
   //urls
@@ -23,7 +23,7 @@ const ListAnyItem = (props) => {
 
     if (typeof fieldBody === "string") {
       return (
-        <div className={"listAnyItemField"}>
+        <div className={"listAnyItemField"} key={fieldNameWithoutFormat}>
           <p className={"listAnyItemFieldText"}>
             {formattedFieldName + ": " + fieldBody}
           </p>
@@ -39,8 +39,15 @@ const ListAnyItem = (props) => {
     return itemFields.map((field) => drawField(field));
   };
 
+  const onItemPress = () => {
+    document.location.pathname = urlReader(item.url);
+  };
+
   return (
-    <div className={`listAnyItemWrapper ${isLast && "listAnyItemWrapperLast"}`}>
+    <div
+      className={`listAnyItemWrapper ${isLast && "listAnyItemWrapperLast"}`}
+      onClick={() => onItemPress(item)}
+    >
       {item.title && <p className={"listAnyItemTitle"}>{item.title}</p>}
       {item.name && <p className={"listAnyItemTitle"}>{item.name}</p>}
 

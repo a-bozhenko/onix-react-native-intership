@@ -6,6 +6,8 @@ import Pagination from "../../components/Pagination";
 import { MainWrapper } from "../../containers";
 import ItemsList from "../../components/ItemsList";
 import "./styles.css";
+import Header from "../../components/Header";
+import Loader from "../../components/Loader";
 
 const MainScreen = () => {
   const [query, setQuery] = useState("");
@@ -13,6 +15,8 @@ const MainScreen = () => {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(0);
   const [items, setItems] = useState([]);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     onSearch();
@@ -29,9 +33,13 @@ const MainScreen = () => {
         setCount(response.count);
         setItems(response.results);
         scrollToTop();
+        setLoading(false);
+        setError("");
       },
-      (error) => {
-        console.log("error" + type, error, error?.response);
+      () => {
+        setPage(1);
+        setError("Something went wrong");
+        setLoading(false);
       }
     );
   };
@@ -55,39 +63,48 @@ const MainScreen = () => {
   };
 
   return (
-    <div className={"mainScreenRoot"}>
-      <MainWrapper>
-        <SearchField
-          placeholderText={"search for"}
-          onChange={onChangeQuery}
-          value={query}
-          onSearch={onSearch}
-          searchButtonText={"Search"}
-        />
+    <>
+      <Header title={"Star Wars Search Info"} />
+      <div className={"mainScreenRoot"}>
+        {loading ? (
+          <Loader />
+        ) : (
+          <MainWrapper>
+            <SearchField
+              placeholderText={"search for"}
+              onChange={onChangeQuery}
+              value={query}
+              onSearch={onSearch}
+              searchButtonText={"Search"}
+            />
 
-        <ButtonSwitcher
-          selected={type}
-          name={"typeSelector"}
-          onChange={onChangeType}
-          buttons={[
-            { text: "Films", id: CONTENT_TYPES.FILMS },
-            { text: "People", id: CONTENT_TYPES.PEOPLE },
-            { text: "Planets", id: CONTENT_TYPES.PLANETS },
-            { text: "Species", id: CONTENT_TYPES.SPECIES },
-            { text: "Starships", id: CONTENT_TYPES.STARSHIPS },
-            { text: "Vehicles", id: CONTENT_TYPES.VEHICLES },
-          ]}
-        />
+            <ButtonSwitcher
+              selected={type}
+              name={"typeSelector"}
+              onChange={onChangeType}
+              buttons={[
+                { text: "Films", id: CONTENT_TYPES.FILMS },
+                { text: "People", id: CONTENT_TYPES.PEOPLE },
+                { text: "Planets", id: CONTENT_TYPES.PLANETS },
+                { text: "Species", id: CONTENT_TYPES.SPECIES },
+                { text: "Starships", id: CONTENT_TYPES.STARSHIPS },
+                { text: "Vehicles", id: CONTENT_TYPES.VEHICLES },
+              ]}
+            />
 
-        <ItemsList items={items} itemsType={type} />
+            {!!error && <p>{error}</p>}
 
-        <Pagination
-          count={count}
-          current={page}
-          onChange={onChangePagination}
-        />
-      </MainWrapper>
-    </div>
+            <ItemsList items={items} itemsType={type} />
+
+            <Pagination
+              count={count}
+              current={page}
+              onChange={onChangePagination}
+            />
+          </MainWrapper>
+        )}
+      </div>
+    </>
   );
 };
 

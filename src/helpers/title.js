@@ -3,7 +3,7 @@ export const capitalize = (string) => {
 };
 
 export const makeFormattedFieldName = (unformattedName) => {
-  const withoutUnderline = unformattedName.replace("_", " ");
+  const withoutUnderline = unformattedName.replaceAll("_", " ");
 
   return capitalize(withoutUnderline);
 };
